@@ -29,6 +29,7 @@
   "author": "annamaz",
   "license": "MIT",
   "dependencies": {
+    "axios": "0.15.0",
     "object-assign": "4.1.0",
     "react": "15.3.1",
     "react-dom": "15.3.1",
