@@ -7,6 +7,12 @@ import * as actions from '../../actions/pokemonActions';
 import PokemonDetails from '../contents/PokemonDetails';
 
 class PokemonsPage extends React.Component {
+  componentWillMount() {
+    const url = "http://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
+
+    this.props.actions.fetchPokemonsList(url);
+  }
+
   _pokemonsTable() {
     let items = [];
 
@@ -34,8 +40,14 @@ class PokemonsPage extends React.Component {
       <div>
         {this.props.pokemonData.id ? "Pokemon id: " + this.props.pokemonData.id : "" }<br/>
         <Button
-          bsStyle="primary"
-          onClick={() => {this.props.actions.fetchPokemonsList();}}>Get list of Pokemons
+          bsStyle="info"
+          disabled={!this.props.previous}
+          onClick={() => {this.props.actions.fetchPokemonsList(this.props.previous);}}>Previous
+        </Button>
+        <Button
+          bsStyle="info"
+          disabled={!this.props.next}
+          onClick={() => {this.props.actions.fetchPokemonsList(this.props.next);}}>Next
         </Button>
         <div className="pokemons-list-container">
           <ListGroup className="pokemons-list-group">
@@ -55,13 +67,17 @@ class PokemonsPage extends React.Component {
 PokemonsPage.propTypes = {
   actions: PropTypes.object.isRequired,
   pokemonData: PropTypes.object.isRequired,
-  pokemonsList: PropTypes.object
+  pokemonsList: PropTypes.object,
+  previous: PropTypes.string,
+  next: PropTypes.string
 };
 
 function mapStateToProps(state) {
   return {
     pokemonData: state.pokemonsReducer.pokemonData,
-    pokemonsList: state.pokemonsReducer.pokemonsList
+    pokemonsList: state.pokemonsReducer.pokemonsList,
+    previous: state.pokemonsReducer.previous,
+    next: state.pokemonsReducer.next
   };
 }
 

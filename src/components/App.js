@@ -1,7 +1,9 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import LoadingDots from '../components/common/LoadingDots';
 
 import {Link, IndexLink} from 'react-router';
-import {Button, Navbar, Nav, NavItem} from 'react-bootstrap';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 const App = (props) => {
   return (
@@ -19,9 +21,10 @@ const App = (props) => {
           <NavItem eventKey={2}>
             <Link to="/about">About</Link>
           </NavItem>
-          <NavItem eventKey={1}>
+          <NavItem eventKey={3}>
             <Link to="/pokemons">Find Pokemon</Link>
           </NavItem>
+            {props.loading && <LoadingDots className="loadingDots" interval={100} dots={20}/>}
         </Nav>
       </Navbar>
 
@@ -32,7 +35,14 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.object,
+  loading: PropTypes.bool.isRequired
 };
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    loading: state.ajaxCallsInProgress > 0
+  };
+}
+
+export default connect(mapStateToProps)(App);

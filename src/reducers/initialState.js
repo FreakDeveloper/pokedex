@@ -1,4 +1,7 @@
 export default {
   pokemonData: {},
-  pokemonsList: []
+  pokemonsList: [],
+  ajaxCallsInProgress: 0,
+  previous: null,
+  next: null
 };

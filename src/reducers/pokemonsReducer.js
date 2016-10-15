@@ -3,12 +3,14 @@ import initialState from './initialState';
 
 export default function pokemonsReducer(state = initialState, action) {
   switch (action.type) {
-    case types.GET_POKEMON:
+    case types.GET_POKEMON_SUCCESS:
       return Object.assign({}, state, {pokemonData: action.payload});
-      break;
-    case types.GET_POKEMONS_LIST:
-      return Object.assign({}, state, {pokemonsList: action.payload});
-      break;
+    case types.GET_POKEMONS_LIST_SUCCESS:
+      return Object.assign({}, state, {
+        pokemonsList: action.payload.result,
+        previous: action.payload.previous,
+        next: action.payload.next
+      });
     default:
       return state;
   }
