@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 
 const HomePage = () => {
   return (
@@ -9,7 +8,6 @@ const HomePage = () => {
       <ol>
         <li>Here is gonna be a great Pokedex app soon!</li>
       </ol>
-      <Button bsStyle="primary">Primary</Button>
     </div>
   );
 };

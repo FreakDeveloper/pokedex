@@ -12,18 +12,18 @@ const App = (props) => {
             <a href="#">PokeApp</a>
           </Navbar.Brand>
         </Navbar.Header>
+        <Nav>
+          <NavItem eventKey={1}>
+            <IndexLink to="/">Home</IndexLink>
+          </NavItem>
+          <NavItem eventKey={2}>
+            <Link to="/about">About</Link>
+          </NavItem>
+          <NavItem eventKey={1}>
+            <Link to="/pokemons">Find Pokemon</Link>
+          </NavItem>
+        </Nav>
       </Navbar>
-      <Nav>
-        <NavItem eventKey={1}>
-          <IndexLink to="/">Home</IndexLink>
-        </NavItem>
-        <NavItem eventKey={2}>
-          <Link to="/about">About</Link>
-        </NavItem>
-        <NavItem eventKey={1}>
-          <Link to="/pokemons">Find Pokemon</Link>
-        </NavItem>
-      </Nav>
 
       <br/>
       {props.children}
