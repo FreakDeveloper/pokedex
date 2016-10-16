@@ -16,22 +16,27 @@ class PokemonsPage extends React.Component {
   }
 
   componentWillUnmount() {
+    this.props.actions.setCurrentPokemon({});
     this.props.actions.setCurrentPokemonsList([]);
   }
 
   render() {
     return (
-      <div>
-        <Button
-          bsStyle="info"
-          disabled={!this.props.previous}
-          onClick={() => {this.props.actions.fetchPokemonsList(this.props.previous);}}>Previous
-        </Button>
-        <Button
-          bsStyle="info"
-          disabled={!this.props.next}
-          onClick={() => {this.props.actions.fetchPokemonsList(this.props.next);}}>Next
-        </Button>
+      <div className="pokemons-page">
+        <div className="buttons">
+          <Button
+            className="prev"
+            bsStyle="info"
+            disabled={!this.props.previous}
+            onClick={() => {this.props.actions.fetchPokemonsList(this.props.previous);}}>Previous
+          </Button>
+          <Button
+            className="next"
+            bsStyle="info"
+            disabled={!this.props.next}
+            onClick={() => {this.props.actions.fetchPokemonsList(this.props.next);}}>Next
+          </Button>
+        </div>
         <PokemonsList
           pokemonData={this.props.pokemonData}
           caughtPokemons={this.props.caughtPokemons}

@@ -18,15 +18,16 @@ const PokemonDetails = ({pokemonData, caughtPokemons, catchPokemonAction, releas
   }
 
   return (
-    <div>
-      <div>
+    <div className="pokemon-details">
+      <div className="pokemon-image">
         <img src={`https://img.pokemondb.net/artwork/${pokemonData.name}.jpg`}/>
       </div>
+      {button}
+
       {pokemonData.order ? "Order: " + pokemonData.order : ""}<br/>
       {pokemonData.height ? "Height: " + pokemonData.height : ""}<br/>
       {pokemonData.weight ? "Weight: " + pokemonData.weight : ""}<br/>
       {pokemonData.base_experience ? "Base experience: " + pokemonData.base_experience : ""}<br/>
-      {button}
     </div>
   );
 };

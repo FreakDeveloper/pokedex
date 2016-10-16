@@ -9,7 +9,8 @@ import * as utils from '../../utils';
 const _getPokemonButton = (pokemonsList, fetchPokemon, caughtPokemons) => {
 
   return pokemonsList.map((item) => {
-    const classNames = cn('pokemons-list-item', { 'active': caughtPokemons.filter(pokemon => pokemon.name === item.name).length > 0 });
+    const classNames = cn('pokemons-list-item',
+      {'active': caughtPokemons.filter(pokemon => pokemon.name === item.name).length > 0});
 
     return (
       <ListGroupItem key={uuid.v4()}
@@ -34,29 +35,42 @@ const PokemonsList = ({
     return (<div>No Pokemon.</div>)
   } else {
 
-    let panel = null;
-    if (pokemonData.name) {
-      panel = (
-        <Panel
-          className="pokemon-details-container"
-          header={pokemonData.name ? utils.capitalizeFirstLetter(pokemonData.name) : "Pokemon's name"}>
-          <PokemonDetails
-            pokemonData={pokemonData}
-            caughtPokemons={caughtPokemons}
-            catchPokemonAction={catchPokemonAction}
-            releasePokemonAction={releasePokemonAction}/>
-        </Panel>
-      );
-    }
-
-    return (
-      <div className="pokemons-list-container">
+    let listGroup = null;
+    let wide = true;
+    if (pokemonsList.length > 0) {
+      listGroup = (
         <ListGroup className="pokemons-list-group">
           <div className="pokemons-list">
             {_getPokemonButton(pokemonsList, fetchPokemon, caughtPokemons)}
           </div>
         </ListGroup>
-        {panel}
+      );
+      wide = false;
+    }
+
+    let details = null;
+    if (pokemonData.name) {
+
+      details = (
+        <PokemonDetails
+      pokemonData={pokemonData}
+      caughtPokemons={caughtPokemons}
+      catchPokemonAction={catchPokemonAction}
+      releasePokemonAction={releasePokemonAction}/>
+      );
+    }
+
+    const className = cn("pokemons-list-container", {"wide": wide});
+    const containerCn = cn("pokemon-details-container", {"wide": wide});
+
+    return (
+      <div className={className}>
+        {listGroup}
+        <Panel
+          className={containerCn}
+          header={pokemonData.name ? utils.capitalizeFirstLetter(pokemonData.name) : "Pokemon info"}>
+          {details}
+        </Panel>
       </div>
     );
   }

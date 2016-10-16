@@ -19,6 +19,7 @@ class HomePage extends React.Component {
   }
 
   componentWillUnmount() {
+    this.props.actions.setCurrentPokemon({});
     this.props.actions.setCurrentPokemonsList([]);
   }
 
@@ -34,6 +35,7 @@ class HomePage extends React.Component {
     if (this.state.search.length != 0) {
       const url = config.baseUrl + "/pokemon/";
       this.props.actions.setCurrentPokemon({});
+      this.props.actions.setCurrentPokemonsListType({});
       this.props.actions.fetchPokemon(url + this.state.search);
     }
   }
