@@ -54,41 +54,44 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="header-image"></div>
-        <h2>Get started</h2>
-        <ol>
-          <li>Here is gonna be a great Pokedex app soon!</li>
-        </ol>
+      <div className="home-container">
+        <div className="home-image"></div>
+        <h2>Lets find your favourite Pokemon!</h2>
+
         <div className="pokemon-search">
-          <input
-            name="name"
-            type="text"
-            placeholder="Search by name..."
-            value={this.state.search}
-            onChange={this.updateSearch.bind(this)}/>
-          <Button
-            type="primary"
-            onClick={this.searchForPokemon.bind(this)}>
-            Search
-          </Button>
-          <input
-            name="type"
-            type="text"
-            placeholder="Search by type..."
-            value={this.state.type}
-            onChange={this.updateType.bind(this)}/>
-          <Button
-            type="primary"
-            onClick={this.searchForPokemonType.bind(this)}>
-            Search
-          </Button>
+          <div className="section">
+            <input
+              name="name"
+              type="text"
+              placeholder="Search by name..."
+              value={this.state.search}
+              onChange={this.updateSearch.bind(this)}/>
+            <Button
+              type="primary"
+              onClick={this.searchForPokemon.bind(this)}>
+              Search
+            </Button>
+          </div>
+          <div className="section">
+            <input
+              name="type"
+              type="text"
+              placeholder="Search by type..."
+              value={this.state.type}
+              onChange={this.updateType.bind(this)}/>
+            <Button
+              type="primary"
+              onClick={this.searchForPokemonType.bind(this)}>
+              Search
+            </Button>
+          </div>
         </div>
         <PokemonsList
           pokemonData={this.props.pokemonData}
           caughtPokemons={this.props.caughtPokemons}
           pokemonsList={this.props.pokemonsList}
           fetchPokemon={this.props.actions.fetchPokemon}
+          fetchingPokemonFail={this.props.fetchingPokemonFail}
           catchPokemonAction={this.props.userActions.catchPokemon}
           releasePokemonAction={this.props.userActions.releasePokemon}
         />

@@ -1,4 +1,5 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css');
+@import 'home-page';
 
 body {
   background: url('../resources/poke-background.png') no-repeat;
@@ -9,13 +10,6 @@ body {
   background-color: rgba(0,0,0,0.8);
   border: none;
   border-radius: 0px;
-}
-
-.header-image {
-  background: url('../resources/pokedex.png') no-repeat;
-  background-size: 100% auto;
-  width: 350px;
-  height: 140px;
 }
 
 .loadingDots {
@@ -46,4 +40,8 @@ body {
 
 .pokemons-list-item-name {
   font-size: 20px;
+}
+
+.active {
+  background: blue;
 }

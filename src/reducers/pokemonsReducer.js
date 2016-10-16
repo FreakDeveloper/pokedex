@@ -13,7 +13,8 @@ export default function pokemonsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         pokemonsList: action.payload.results,
         previous: action.payload.previous,
-        next: action.payload.next
+        next: action.payload.next,
+        fetchingPokemonFail: false
       });
     case types.SET_CURRENT_POKEMON:
       return Object.assign({}, state, {

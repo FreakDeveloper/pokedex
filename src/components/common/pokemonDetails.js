@@ -3,10 +3,18 @@ import {Button} from 'react-bootstrap';
 
 const PokemonDetails = ({pokemonData, caughtPokemons, catchPokemonAction, releasePokemonAction}) => {
   let button = null;
-  if (caughtPokemons.indexOf(pokemonData.id) != -1) {
-    button = <Button bsStyle="danger" onClick={releasePokemonAction.bind(this, pokemonData.id)}>Release</Button>;
+  if (caughtPokemons.filter(pokemon => pokemon.id === pokemonData.id).length > 0) {
+    button = <Button
+      bsStyle="danger"
+      onClick={releasePokemonAction.bind(this, {id: pokemonData.id, name: pokemonData.name})}>
+      Release
+    </Button>;
   } else {
-    button = <Button bsStyle="info" onClick={catchPokemonAction.bind(this, pokemonData.id)}>Catch</Button>;
+    button = <Button
+      bsStyle="info"
+      onClick={catchPokemonAction.bind(this, {id: pokemonData.id, name: pokemonData.name})}>
+      Catch
+    </Button>;
   }
 
   return (

@@ -1,9 +1,9 @@
 import * as types from '../constants/actionTypes';
 
-export function catchPokemon(pokemonId) {
-  return { type: types.CATCH_POKEMON, pokemonId };
+export function catchPokemon(pokemon) {
+  return { type: types.CATCH_POKEMON, pokemon };
 }
 
-export function releasePokemon(pokemonId) {
-  return { type: types.RELEASE_POKEMON, pokemonId };
+export function releasePokemon(pokemon) {
+  return { type: types.RELEASE_POKEMON, pokemon };
 }

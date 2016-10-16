@@ -68,6 +68,7 @@ export function fetchPokemonsListByType(url) {
       }
     }).catch(error => {
       dispatch(ajaxCallError(error));
+      dispatch(getPokemonFailed());
       throw(error);
     });
   };
