@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import * as actions from '../../actions/pokemonActions';
+import * as userActions from '../../actions/userActions';
 import PokemonsList from '../common/pokemonsList';
 import {config} from '../../config';
 
@@ -54,7 +55,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Pokedex app</h1>
+        <div className="header-image"></div>
         <h2>Get started</h2>
         <ol>
           <li>Here is gonna be a great Pokedex app soon!</li>
@@ -85,8 +86,12 @@ class HomePage extends React.Component {
         </div>
         <PokemonsList
           pokemonData={this.props.pokemonData}
+          caughtPokemons={this.props.caughtPokemons}
           pokemonsList={this.props.pokemonsList}
-          fetchPokemon={this.props.actions.fetchPokemon}/>
+          fetchPokemon={this.props.actions.fetchPokemon}
+          catchPokemonAction={this.props.userActions.catchPokemon}
+          releasePokemonAction={this.props.userActions.releasePokemon}
+        />
       </div>
     );
   }
@@ -94,7 +99,9 @@ class HomePage extends React.Component {
 
 HomePage.propTypes = {
   actions: PropTypes.object.isRequired,
+  userActions: PropTypes.object.isRequired,
   pokemonData: PropTypes.object.isRequired,
+  caughtPokemons: PropTypes.array,
   pokemonsList: PropTypes.object,
   searchPerformed: PropTypes.bool,
   fetchingPokemonFail: PropTypes.bool
@@ -103,6 +110,7 @@ HomePage.propTypes = {
 function mapStateToProps(state) {
   return {
     pokemonData: state.pokemonsReducer.pokemonData,
+    caughtPokemons: state.userReducer.caughtPokemons,
     pokemonsList: state.pokemonsReducer.pokemonsList,
     searchPerformed: state.pokemonsReducer.searchPerformed,
     fetchingPokemonFail: state.pokemonsReducer.fetchingPokemonFail
@@ -111,7 +119,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(actions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch)
   };
 }
 

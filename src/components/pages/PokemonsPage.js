@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Button} from 'react-bootstrap';
 
 import * as actions from '../../actions/pokemonActions';
+import * as userActions from '../../actions/userActions';
 import PokemonsList from '../common/pokemonsList';
 
 import {config} from '../../config';
@@ -30,8 +31,11 @@ class PokemonsPage extends React.Component {
         </Button>
         <PokemonsList
           pokemonData={this.props.pokemonData}
+          caughtPokemons={this.props.caughtPokemons}
           pokemonsList={this.props.pokemonsList}
-          fetchPokemon={this.props.actions.fetchPokemon} />
+          fetchPokemon={this.props.actions.fetchPokemon}
+          catchPokemonAction={this.props.userActions.catchPokemon}
+          releasePokemonAction={this.props.userActions.releasePokemon}/>
       </div>
     );
   }
@@ -39,7 +43,9 @@ class PokemonsPage extends React.Component {
 
 PokemonsPage.propTypes = {
   actions: PropTypes.object.isRequired,
+  userActions: PropTypes.object.isRequired,
   pokemonData: PropTypes.object.isRequired,
+  caughtPokemons: PropTypes.array,
   pokemonsList: PropTypes.object,
   previous: PropTypes.string,
   next: PropTypes.string
@@ -48,6 +54,7 @@ PokemonsPage.propTypes = {
 function mapStateToProps(state) {
   return {
     pokemonData: state.pokemonsReducer.pokemonData,
+    caughtPokemons: state.userReducer.caughtPokemons,
     pokemonsList: state.pokemonsReducer.pokemonsList,
     previous: state.pokemonsReducer.previous,
     next: state.pokemonsReducer.next
@@ -56,7 +63,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(actions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch)
   };
 }
 

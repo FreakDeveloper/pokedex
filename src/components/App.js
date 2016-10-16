@@ -11,7 +11,7 @@ const App = (props) => {
       <Navbar bsStyle="inverse" className="header">
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">PokeApp</a>
+            <a href="#">Pokedex</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
@@ -24,12 +24,15 @@ const App = (props) => {
           <NavItem eventKey={3}>
             <Link to="/pokemons">Find Pokemon</Link>
           </NavItem>
-            {props.loading && <LoadingDots className="loadingDots" interval={100} dots={20}/>}
+          <NavItem eventKey={4}>
+            {props.caughtPokemons.length}
+          </NavItem>
+          {props.loading && <LoadingDots className="loadingDots" interval={100} dots={20}/>}
         </Nav>
       </Navbar>
-
-      <br/>
-      {props.children}
+      <div className="container">
+        {props.children}
+      </div>
     </div>
   );
 };
@@ -41,7 +44,8 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    loading: state.ajaxCallsInProgress > 0
+    loading: state.ajaxCallsInProgress > 0,
+    caughtPokemons: state.userReducer.caughtPokemons
   };
 }
 
