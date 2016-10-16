@@ -1,18 +1,18 @@
 import React, {PropTypes} from 'react';
 
-const PokemonDetails = (props) => {
+const PokemonDetails = (data) => {
   return(
     <div>
-      {props.pokemonData.order ? "Order: " + props.pokemonData.order : ""}<br/>
-      {props.pokemonData.height ? "Height: " + props.pokemonData.height : ""}<br/>
-      {props.pokemonData.weight ? "Weight: " + props.pokemonData.weight : ""}<br/>
-      {props.pokemonData.base_experience ? "Base experience: " + props.pokemonData.base_experience : ""}<br/>
+      {data.pokemonData.order ? "Order: " + data.pokemonData.order : ""}<br/>
+      {data.pokemonData.height ? "Height: " + data.pokemonData.height : ""}<br/>
+      {data.pokemonData.weight ? "Weight: " + data.pokemonData.weight : ""}<br/>
+      {data.pokemonData.base_experience ? "Base experience: " + data.pokemonData.base_experience : ""}<br/>
     </div>
-  )
+  );
 };
 
 PokemonDetails.propTypes = {
-  props: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired
 };
 
 export default PokemonDetails;

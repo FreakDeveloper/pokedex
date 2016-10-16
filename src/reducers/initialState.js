@@ -3,5 +3,7 @@ export default {
   pokemonsList: [],
   ajaxCallsInProgress: 0,
   previous: null,
-  next: null
+  next: null,
+  error: false,
+  searchPerformed: false
 };

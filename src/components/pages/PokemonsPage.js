@@ -1,15 +1,17 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import uuid from 'node-uuid';
 import {Button, ListGroup, ListGroupItem, Panel} from 'react-bootstrap';
 
 import * as actions from '../../actions/pokemonActions';
 import PokemonDetails from '../contents/PokemonDetails';
 
+import {config} from '../../config';
+
 class PokemonsPage extends React.Component {
   componentWillMount() {
-    const url = "http://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
-
+    const url = config.baseUrl + "pokemon?offset=0&limit=10";
     this.props.actions.fetchPokemonsList(url);
   }
 
@@ -19,7 +21,7 @@ class PokemonsPage extends React.Component {
     if (this.props.pokemonsList && Array.isArray(this.props.pokemonsList)) {
       items = this.props.pokemonsList.map((item) => {
           return (
-            <ListGroupItem
+            <ListGroupItem key={uuid.v4()}
               className="pokemons-list-item"
               onClick={this.props.actions.fetchPokemon.bind(this,item.url)}>
               <div className="pokemons-list-item-name">{item.name}</div>
