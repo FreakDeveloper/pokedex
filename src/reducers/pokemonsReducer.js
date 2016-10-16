@@ -7,23 +7,21 @@ export default function pokemonsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         pokemonData: action.payload.data,
         searchPerformed: !!action.payload.searchPerformed,
-        error: false
+        fetchingPokemonFail: false
       });
     case types.GET_POKEMONS_LIST_SUCCESS:
       return Object.assign({}, state, {
-        pokemonsList: action.payload.result,
+        pokemonsList: action.payload.results,
         previous: action.payload.previous,
-        next: action.payload.next,
-        error: false
+        next: action.payload.next
       });
-    case types.SET_CURRENT_POKEMON_SUCCESS:
+    case types.SET_CURRENT_POKEMON:
       return Object.assign({}, state, {
-        pokemonData: action.value,
-        error: false
+        pokemonData: action.value
       });
-    case types.AJAX_CALL_ERROR:
+    case types.GET_POKEMON_FAILED:
       return Object.assign({}, state, {
-        error: true
+        fetchingPokemonFail: true
       });
     default:
       return state;

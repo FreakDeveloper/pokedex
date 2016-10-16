@@ -4,6 +4,6 @@ export default {
   ajaxCallsInProgress: 0,
   previous: null,
   next: null,
-  error: false,
+  fetchingPokemonFail: false,
   searchPerformed: false
 };

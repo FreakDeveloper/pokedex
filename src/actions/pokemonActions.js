@@ -6,13 +6,17 @@ export function getPokemonSuccess(data) {
   return { type: types.GET_POKEMON_SUCCESS, payload: {data: data, searchPerformed: true}};
 }
 
+export function getPokemonFailed() {
+  return { type: types.GET_POKEMON_FAILED};
+}
+
 export function getPokemonsListSuccess(data) {
   return { type: types.GET_POKEMONS_LIST_SUCCESS, payload:
-  {result: data.results, previous: data.previous, next: data.next} };
+  {results: data.results, previous: data.previous, next: data.next} };
 }
 
 export function setCurrentPokemonSuccess(value) {
-  return { type: types.SET_CURRENT_POKEMON_SUCCESS, value};
+  return { type: types.SET_CURRENT_POKEMON, value};
 }
 
 export function fetchPokemon(url) {
@@ -24,6 +28,7 @@ export function fetchPokemon(url) {
       dispatch(getPokemonSuccess(data));
     }).catch(error => {
         dispatch(ajaxCallError(error));
+        dispatch(getPokemonFailed());
         throw(error);
     });
   };
@@ -37,6 +42,30 @@ export function fetchPokemonsList(url) {
     request.then((result) => {
       if(result.data)
       dispatch(getPokemonsListSuccess(result.data));
+    }).catch(error => {
+      dispatch(ajaxCallError(error));
+      throw(error);
+    });
+  };
+}
+
+export function fetchPokemonsListByType(url) {
+  const request = axios.get(url);
+
+  return (dispatch) => {
+    dispatch(beginAjaxCall());
+    request.then((result) => {
+      if(result.data) {
+        var resultsList = [];
+        if(result.data.pokemon && Array.isArray(result.data.pokemon)) {
+          resultsList = result.data.pokemon.map(item => {
+            return item.pokemon;
+          })
+        }
+
+        dispatch(getPokemonsListSuccess({results: resultsList}));
+
+      }
     }).catch(error => {
       dispatch(ajaxCallError(error));
       throw(error);
