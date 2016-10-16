@@ -2,8 +2,15 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import LoadingDots from '../components/common/LoadingDots';
 
-import {Link, IndexLink} from 'react-router';
+import {browserHistory} from 'react-router';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
+
+
+
+const _changeRoute = (path) => {
+  browserHistory.push(path);
+}
+
 
 const App = (props) => {
   return (
@@ -14,20 +21,24 @@ const App = (props) => {
             <a href="#">Pokedex</a>
           </Navbar.Brand>
         </Navbar.Header>
+        {props.loading && <LoadingDots className="loadingDots" interval={100} dots={20}/>}
         <Nav>
-          <NavItem eventKey={1}>
-            <IndexLink to="/">Home</IndexLink>
+          <NavItem eventKey={1} onClick={_changeRoute.bind(this, "/")}>
+            Home
           </NavItem>
-          <NavItem eventKey={2}>
-            <Link to="/about">About</Link>
+          <NavItem eventKey={2} onClick={_changeRoute.bind(this, "/about")}>
+            About
           </NavItem>
-          <NavItem eventKey={3}>
-            <Link to="/pokemons">Find Pokemon</Link>
+          <NavItem eventKey={3} onClick={_changeRoute.bind(this, "/pokemons")}>
+            Find Pokemon
           </NavItem>
           <NavItem eventKey={4}>
-            {props.caughtPokemons.length}
+            <div className="caught-pokemons">
+              <div className="pokemons">
+                {props.caughtPokemons.length}
+              </div>
+            </div>
           </NavItem>
-          {props.loading && <LoadingDots className="loadingDots" interval={100} dots={20}/>}
         </Nav>
       </Navbar>
       <div className="container">

@@ -18,6 +18,10 @@ class HomePage extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    this.props.actions.setCurrentPokemonsList([]);
+  }
+
   updateSearch(event) {
     this.setState({search: event.target.value});
   }
@@ -67,7 +71,7 @@ class HomePage extends React.Component {
               value={this.state.search}
               onChange={this.updateSearch.bind(this)}/>
             <Button
-              type="primary"
+              bsStyle="default"
               onClick={this.searchForPokemon.bind(this)}>
               Search
             </Button>
@@ -80,7 +84,7 @@ class HomePage extends React.Component {
               value={this.state.type}
               onChange={this.updateType.bind(this)}/>
             <Button
-              type="primary"
+              bsStyle="default"
               onClick={this.searchForPokemonType.bind(this)}>
               Search
             </Button>
@@ -105,7 +109,7 @@ HomePage.propTypes = {
   userActions: PropTypes.object.isRequired,
   pokemonData: PropTypes.object.isRequired,
   caughtPokemons: PropTypes.array,
-  pokemonsList: PropTypes.object,
+  pokemonsList: PropTypes.array,
   searchPerformed: PropTypes.bool,
   fetchingPokemonFail: PropTypes.bool
 };

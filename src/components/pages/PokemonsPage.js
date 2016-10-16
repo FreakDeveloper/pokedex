@@ -15,10 +15,13 @@ class PokemonsPage extends React.Component {
     this.props.actions.fetchPokemonsList(url);
   }
 
+  componentWillUnmount() {
+    this.props.actions.setCurrentPokemonsList([]);
+  }
+
   render() {
     return (
       <div>
-        {this.props.pokemonData.id ? "Pokemon id: " + this.props.pokemonData.id : "" }<br/>
         <Button
           bsStyle="info"
           disabled={!this.props.previous}
@@ -46,7 +49,7 @@ PokemonsPage.propTypes = {
   userActions: PropTypes.object.isRequired,
   pokemonData: PropTypes.object.isRequired,
   caughtPokemons: PropTypes.array,
-  pokemonsList: PropTypes.object,
+  pokemonsList: PropTypes.array,
   previous: PropTypes.string,
   next: PropTypes.string
 };

@@ -20,6 +20,10 @@ export default function pokemonsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         pokemonData: action.value
       });
+    case types.SET_CURRENT_POKEMONS_LIST:
+      return Object.assign({}, state, {
+        pokemonsList: action.value
+      });
     case types.GET_POKEMON_FAILED:
       return Object.assign({}, state, {
         fetchingPokemonFail: true
