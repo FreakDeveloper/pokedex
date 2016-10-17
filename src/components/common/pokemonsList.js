@@ -17,7 +17,7 @@ const _getPokemonButton = (pokemonsList, fetchPokemon, caughtPokemons) => {
                      className={classNames}
                      onClick={fetchPokemon.bind(this, item.url)}>
         <div className="pokemons-list-item-name">{utils.capitalizeFirstLetter(item.name)}</div>
-      </ListGroupItem>)
+      </ListGroupItem>);
   });
 };
 
@@ -77,14 +77,15 @@ const PokemonsList = ({
 
 };
 
-PokemonDetails.propTypes = {
+PokemonsList.propTypes = {
   pokemonData: PropTypes.object.isRequired,
   caughtPokemons: PropTypes.array,
   pokemonsList: PropTypes.array,
   fetchPokemon: PropTypes.func,
   fetchPokemonFail: PropTypes.bool,
   catchPokemonAction: PropTypes.func,
-  releasePokemonAction: PropTypes.func
+  releasePokemonAction: PropTypes.func,
+  fetchingPokemonFail: PropTypes.func
 };
 
 export default PokemonsList;

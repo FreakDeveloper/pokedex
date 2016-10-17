@@ -14,8 +14,9 @@ class PokemonTypes extends React.Component {
       this.props.actions.fetchPokemonSpeciesInfo(this.props.species.url);
     }
   }
+
   render() {
-    var uniques = [];
+    let uniques = [];
     this.props.speciesDescriptions.forEach((item) => {
       if(uniques.filter(flavor_text => item.flavor_text === flavor_text).length === 0) {
         uniques.push(item.flavor_text);
@@ -39,6 +40,7 @@ class PokemonTypes extends React.Component {
 }
 
 PokemonTypes.propTypes = {
+  actions: PropTypes.object.isRequired,
   species: PropTypes.object.isRequired,
   speciesDescriptions: PropTypes.array
 };

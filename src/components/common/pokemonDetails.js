@@ -5,17 +5,17 @@ import PokemonTypes from './pokemonTypes';
 const PokemonDetails = ({pokemonData, caughtPokemons, catchPokemonAction, releasePokemonAction}) => {
   let button = null;
   if (caughtPokemons.filter(pokemon => pokemon.id === pokemonData.id).length > 0) {
-    button = <Button
+    button = (<Button
       bsStyle="danger"
       onClick={releasePokemonAction.bind(this, {id: pokemonData.id, name: pokemonData.name})}>
       Release
-    </Button>;
+    </Button>);
   } else {
-    button = <Button
+    button = (<Button
       bsStyle="info"
       onClick={catchPokemonAction.bind(this, {id: pokemonData.id, name: pokemonData.name})}>
       Catch
-    </Button>;
+    </Button>);
   }
 
   return (

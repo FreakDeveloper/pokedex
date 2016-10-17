@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Button} from 'react-bootstrap';
+import uuid from 'node-uuid';
 
 import * as userActions from '../../actions/userActions';
 import {capitalizeFirstLetter} from '../../utils';
@@ -10,7 +11,7 @@ class PokemonsPage extends React.Component {
   _getPokemonsContent() {
     return this.props.caughtPokemons.map(item => {
       return (
-        <div className="pokemon">
+        <div className="pokemon" key={uuid.v4()}>
           <p>{capitalizeFirstLetter(item.name)}</p>
           <div className="pokemon-image">
             <img src={`https://img.pokemondb.net/artwork/${item.name}.jpg`}/>
@@ -23,8 +24,8 @@ class PokemonsPage extends React.Component {
             </Button>
           </div>
         </div>
-      )
-    })
+      );
+    });
   }
 
 
@@ -48,6 +49,7 @@ class PokemonsPage extends React.Component {
 }
 
 PokemonsPage.propTypes = {
+  userActions: PropTypes.object.isRequired,
   caughtPokemons: PropTypes.array
 };
 

@@ -9,7 +9,7 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 const _changeRoute = (path) => {
   browserHistory.push(path);
-}
+};
 
 
 const App = (props) => {
@@ -53,7 +53,8 @@ const App = (props) => {
 
 App.propTypes = {
   children: PropTypes.object,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  caughtPokemons: PropTypes.array
 };
 
 function mapStateToProps(state) {
