@@ -2,11 +2,14 @@ import React, {PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {ToastContainer, ToastMessage} from "react-toastr";
 
 import * as actions from '../../actions/pokemonActions';
 import * as userActions from '../../actions/userActions';
 import PokemonsList from '../common/pokemonsList';
 import {config} from '../../config';
+
+const ToastMessageFactory = React.createFactory(ToastMessage.animation);
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -48,19 +51,22 @@ class HomePage extends React.Component {
     }
   }
 
-  _getPokemonInfo() {
-    if (this.props.searchPerformed) {
-      if (!this.props.fetchingPokemonFail && this.props.pokemonData.name) {
-        return "Pokemon: " + this.props.pokemonData.name;
-      } else {
-        return "Pokemon not found";
-      }
-    }
-  }
-
   render() {
+    if(this.props.fetchingPokemonFail) {
+      this.refs.tastr.error(
+        "Pokemons were not found.",
+        "Wrong input.", {
+          timeOut: 3000,
+          extendedTimeOut: 1000,
+          preventDuplicates:true
+        });
+    }
+
     return (
       <div className="home-container">
+        <ToastContainer ref="tastr"
+                        toastMessageFactory={ToastMessageFactory}
+                        className="toast-top-right" />
         <div className="home-image"></div>
         <h2>Lets find your favourite Pokemon!</h2>
 
@@ -97,9 +103,9 @@ class HomePage extends React.Component {
           caughtPokemons={this.props.caughtPokemons}
           pokemonsList={this.props.pokemonsList}
           fetchPokemon={this.props.actions.fetchPokemon}
-          fetchingPokemonFail={this.props.fetchingPokemonFail}
           catchPokemonAction={this.props.userActions.catchPokemon}
           releasePokemonAction={this.props.userActions.releasePokemon}
+          fetchingPokemonFail={this.props.fetchingPokemonFail}
         />
       </div>
     );

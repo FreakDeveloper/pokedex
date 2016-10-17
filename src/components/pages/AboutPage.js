@@ -5,9 +5,43 @@ const AboutPage = () => {
     <div className="about">
       <h1>About</h1>
       <div className="about-content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac justo vitae ante tristique imperdiet ut a nisi. Ut orci quam, euismod id elit ut, imperdiet molestie sapien. Etiam ut felis ut lorem molestie fermentum ut at mauris. Ut posuere ipsum sed lectus lobortis, sit amet venenatis lorem venenatis. Phasellus luctus lorem ac cursus dictum. Vestibulum faucibus sapien eu nisi sagittis, non ultrices justo vehicula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent magna justo, tincidunt eu pharetra sed, hendrerit a arcu. Nullam mollis sem massa, eu ullamcorper massa posuere sit amet. Proin luctus eget neque at pretium.
+        <h1>Pokedex app documentation.</h1>
 
-        Nullam ultricies non lacus in rutrum. Cras ex leo, convallis eget mauris a, posuere volutpat mauris. Aliquam id enim sed mi efficitur tempus. Vestibulum gravida lobortis augue a rutrum. Sed vitae ligula tincidunt, vulputate ipsum et, tempus neque. Aliquam quis volutpat leo. Pellentesque in elit sit amet justo rutrum tempor interdum et leo. Phasellus risus nunc, dignissim ut tempus non, ultricies in ligula. Ut quis facilisis libero, ac malesuada ex. Curabitur vitae dui eu purus mollis semper eu nec nisl. Ut ornare lectus vel ligula blandit, id scelerisque dui sodales. Aenean sit amet dignissim augue. Aenean sed quam dictum, efficitur ipsum sit amet, malesuada arcu. Mauris finibus dapibus sapien ut pretium. Nulla dolor sem, maximus sit amet efficitur sed, varius eu nulla. Cras facilisis mattis tellus, et tincidunt risus semper at.
+        <h3>Technical choises:</h3>
+
+        <p>In my application I used suggested API (Pokeapi.co) and ReactJS library. I also used Webpack, ES6
+        with Babel, Redux, Sass, SCSS and React Router. I started with boilerplate created by Cory House
+        (https://github.com/coryhouse/react-slingshot), because I found it easy to set up and well composed. I
+        also chose React-Bootstrap components to improve some of layout elements.</p>
+
+        <h3>Architecture:</h3>
+
+        <p>Architecture of Pokedex Application is closely related to Redux principles. I have one store, actions
+        and reducers. In “common” directory there is a file, which contains action types to keep it clean. I also
+        created a directory named “components”, where you can find all the components used in application.
+        In “common” directory there are some elements which are reused in several places, in “pages” you
+        can find components representing major pages (handled by routes). There is also an App component
+        which is above entire content and bind it together. In “resources” directory I have put all the images
+        used in application, whereas in “styles” there are all stylesheets.</p>
+
+        <h3>Application structure:</h3>
+
+        <p>When you open a Pokedex web application you can see a Home Page with search engine. As you
+        can see, you can search for pokemons by name (e.g. bulbasaur) or by type (e.g. water). When you try
+        to find pokemons by type, there appears a list on the left, where you can pick a specific pokemon and
+        see some detail informations about him in a component placed on the right. Beyond the basic
+        information about the choosen pokemon you can see an image and the button labeled “Catch”. By
+        clicking it you can catch this pokemon. There are some accompanying effects. Firstly, pokemon name
+        in the table turn blue to see which pokemones are caught. Secondly, on the right side of header there
+        is a circle with number in it. This is a number of pokemons which have been caught. When you decide
+        to release pokemon which has been caught, just click “Release” button.</p>
+
+        <p>By clicking “Find Pokemon” on header you can go to the other route, where you can view a list of
+        pokemons. There are some navigation buttons to handle data pagination. As well as at the Home
+        Page, you can pick a pokemon, view detail information and catch him.</p>
+
+        <h3>Have fun catching your favourite pokemons! &hearts; </h3>
+        <p>Anna Mazur</p>
       </div>
     </div>
   );

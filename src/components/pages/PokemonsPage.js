@@ -9,9 +9,11 @@ import PokemonsList from '../common/pokemonsList';
 
 import {config} from '../../config';
 
+
+
 class PokemonsPage extends React.Component {
   componentWillMount() {
-    const url = config.baseUrl + "/pokemon?offset=0&limit=10";
+    const url = config.baseUrl + "/pokemon?offset=30&limit=10";
     this.props.actions.fetchPokemonsList(url);
   }
 
@@ -43,7 +45,9 @@ class PokemonsPage extends React.Component {
           pokemonsList={this.props.pokemonsList}
           fetchPokemon={this.props.actions.fetchPokemon}
           catchPokemonAction={this.props.userActions.catchPokemon}
-          releasePokemonAction={this.props.userActions.releasePokemon}/>
+          releasePokemonAction={this.props.userActions.releasePokemon}
+          fetchingPokemonFail={this.props.fetchingPokemonFail}
+        />
       </div>
     );
   }
@@ -55,6 +59,7 @@ PokemonsPage.propTypes = {
   pokemonData: PropTypes.object.isRequired,
   caughtPokemons: PropTypes.array,
   pokemonsList: PropTypes.array,
+  fetchingPokemonFail: PropTypes.bool,
   previous: PropTypes.string,
   next: PropTypes.string
 };
@@ -65,7 +70,8 @@ function mapStateToProps(state) {
     caughtPokemons: state.userReducer.caughtPokemons,
     pokemonsList: state.pokemonsReducer.pokemonsList,
     previous: state.pokemonsReducer.previous,
-    next: state.pokemonsReducer.next
+    next: state.pokemonsReducer.next,
+    fetchingPokemonFail: state.pokemonsReducer.fetchingPokemonFail
   };
 }
 

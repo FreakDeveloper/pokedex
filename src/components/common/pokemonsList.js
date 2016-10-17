@@ -32,7 +32,7 @@ const PokemonsList = ({
 }) => {
 
   if (fetchingPokemonFail) {
-    return (<div>No Pokemon.</div>)
+    return (<div className="error-container"><h3>Not found</h3></div>);
   } else {
 
     let listGroup = null;

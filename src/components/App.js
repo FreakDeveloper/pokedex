@@ -32,6 +32,9 @@ const App = (props) => {
           <NavItem eventKey={3} onClick={_changeRoute.bind(this, "/pokemons")}>
             Find Pokemon
           </NavItem>
+          <NavItem eventKey={3} onClick={_changeRoute.bind(this, "/user")}>
+            My profile
+          </NavItem>
           <NavItem eventKey={4}>
             <div className="caught-pokemons">
               <div className="pokemons">

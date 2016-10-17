@@ -5,5 +5,6 @@ export default {
   previous: null,
   next: null,
   fetchingPokemonFail: false,
-  searchPerformed: false
+  searchPerformed: false,
+  speciesDescriptions: []
 };

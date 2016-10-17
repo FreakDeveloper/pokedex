@@ -7,7 +7,8 @@ export default function pokemonsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         pokemonData: action.payload.data,
         searchPerformed: !!action.payload.searchPerformed,
-        fetchingPokemonFail: false
+        fetchingPokemonFail: false,
+        speciesDescriptions: []
       });
     case types.GET_POKEMONS_LIST_SUCCESS:
       return Object.assign({}, state, {
@@ -28,6 +29,10 @@ export default function pokemonsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         fetchingPokemonFail: true
       });
+    case types.GET_POKEMONS_SPECIES_SUCCESS:
+      return Object.assign({}, state, {
+            speciesDescriptions: action.payload
+          });
     default:
       return state;
   }

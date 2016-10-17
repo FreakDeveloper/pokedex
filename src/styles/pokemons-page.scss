@@ -22,15 +22,19 @@
 .pokemons-list-group {
   display: inline-block;
   width: 20%;
+  height: 700px;
+  overflow-y: auto;
 }
 
 .pokemon-details-container {
+  height: 700px;
   display: inline-block;
   width: 79%;
   position: absolute;
   margin-left: 5px;
   top: 5px;
   bottom: 5px;
+  overflow-y: auto;
 
   &.wide {
     width: 100%;
@@ -39,4 +43,9 @@
 
 .pokemons-list-item-name {
   font-size: 20px;
+}
+
+.error-container {
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.7);
 }

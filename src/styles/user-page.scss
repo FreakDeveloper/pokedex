@@ -1,0 +1,27 @@
+.user-page {
+  width: 100%;
+  padding: 20px 30px;
+  background-color: rgba(204,204,204,0.8);
+  text-align: center;
+
+  .pokemon {
+    text-align: center;
+    display: inline-block;
+    margin: 5px 10px 5px 10px;
+
+    p {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .pokemon-image {
+      img {
+        height: 180px;
+      }
+    }
+
+    .button {
+      margin-top: 10px;
+    }
+  }
+}

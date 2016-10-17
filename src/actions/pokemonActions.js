@@ -15,6 +15,10 @@ export function getPokemonsListSuccess(data) {
   {results: data.results, previous: data.previous, next: data.next} };
 }
 
+export function getPokemonsSpeciesSuccess(data) {
+  return { type: types.GET_POKEMONS_SPECIES_SUCCESS, payload: data };
+}
+
 export function setCurrentPokemonType(value) {
   return { type: types.SET_CURRENT_POKEMON, value};
 }
@@ -73,6 +77,22 @@ export function fetchPokemonsListByType(url) {
     }).catch(error => {
       dispatch(ajaxCallError(error));
       dispatch(getPokemonFailed());
+      throw(error);
+    });
+  };
+}
+
+export function fetchPokemonSpeciesInfo(url) {
+  const request = axios.get(url);
+
+  return (dispatch) => {
+    dispatch(beginAjaxCall());
+    request.then((result) => {
+      if(result.data && result.data.flavor_text_entries) {
+        dispatch(getPokemonsSpeciesSuccess(result.data.flavor_text_entries.filter(item => item.language.name === 'en')));
+      }
+    }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };

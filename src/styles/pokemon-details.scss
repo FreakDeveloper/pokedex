@@ -1,5 +1,16 @@
 .pokemon-details {
   padding: 5px 10px;
+
+  button {
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+}
+
+.pokemon-details-top {
+  position: relative;
+  text-align: center;
 }
 
 .pokemon-image {

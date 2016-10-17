@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
+import PokemonTypes from './pokemonTypes';
 
 const PokemonDetails = ({pokemonData, caughtPokemons, catchPokemonAction, releasePokemonAction}) => {
   let button = null;
@@ -19,15 +20,19 @@ const PokemonDetails = ({pokemonData, caughtPokemons, catchPokemonAction, releas
 
   return (
     <div className="pokemon-details">
-      <div className="pokemon-image">
-        <img src={`https://img.pokemondb.net/artwork/${pokemonData.name}.jpg`}/>
+      <div className="pokemon-details-top">
+        {button}
+        <div className="pokemon-image">
+          <img src={`https://img.pokemondb.net/artwork/${pokemonData.name}.jpg`}/>
+        </div>
       </div>
-      {button}
 
-      {pokemonData.order ? "Order: " + pokemonData.order : ""}<br/>
-      {pokemonData.height ? "Height: " + pokemonData.height : ""}<br/>
-      {pokemonData.weight ? "Weight: " + pokemonData.weight : ""}<br/>
-      {pokemonData.base_experience ? "Base experience: " + pokemonData.base_experience : ""}<br/>
+      <p>{pokemonData.order ? "Order: " + pokemonData.order : ""}</p>
+      <p>{pokemonData.height ? "Height: " + pokemonData.height : ""}</p>
+      <p>{pokemonData.weight ? "Weight: " + pokemonData.weight : ""}</p>
+      <p>{pokemonData.base_experience ? "Base experience: " + pokemonData.base_experience : ""}</p>
+
+      <PokemonTypes species={pokemonData.species} />
     </div>
   );
 };
